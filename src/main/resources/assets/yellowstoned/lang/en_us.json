@@ -1,0 +1,19 @@
+{
+  "itemgroup.yellowstoned_group": "Yellowstoned",
+  "item.yellowstoned.beaver_spawn_egg": "Beaver Spawn Egg",
+  "item.yellowstoned.reindeer_spawn_egg": "Reindeer Spawn Egg",
+  "item.yellowstoned.moose_spawn_egg": "Moose Spawn Egg",
+  "item.yellowstoned.bison_spawn_egg": "Bison Spawn Egg",
+
+  "item.yellowstoned.yellowstoned_guide_book": "Yellowstoned Guide Book",
+  "item.yellowstoned.wood_soup": "Wood Soup",
+
+  "entity.yellowstoned.moose": "Moose",
+  "entity.yellowstoned.reindeer": "Reindeer",
+  "entity.yellowstoned.beaver": "Beaver",
+
+  "sounds.yellowstoned.entity.moose.death": "Moose dies",
+  "sounds.yellowstoned.entity.moose.ambient": "Moose bellows",
+
+  "effect.yellowstoned.chopped": "Chopped"
+}

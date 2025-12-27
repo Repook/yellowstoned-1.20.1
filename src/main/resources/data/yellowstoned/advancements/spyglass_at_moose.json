@@ -1,0 +1,50 @@
+{
+  "parent": "yellowstoned:yellowstoned",
+  "criteria": {
+    "spyglass_at_moose": {
+      "conditions": {
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        },
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type_specific": {
+                "type": "player",
+                "looking_at": {
+                  "type": "yellowstoned:moose"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:using_item"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "Moose in the rearview"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:spyglass"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Is it a Moose"
+    }
+  },
+  "requirements": [
+    [
+      "spyglass_at_moose"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

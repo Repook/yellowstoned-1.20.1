@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "yellowstoned",
+	"version": "${version}",
+	"name": "Yellowstoned",
+	"description": "Aims to add the natural wonders of the North American wilderness.",
+	"authors": [
+		"Repook"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/yellowstoned/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"repook.yellowstoned.Yellowstoned"
+		],
+		"client":[
+			"repook.yellowstoned.YellowstonedClient"
+		],
+		"fabric-datagen": [
+			"repook.yellowstoned.YellowstonedDataGenerator"
+		]
+	},
+	"mixins": [
+		"yellowstoned.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.1",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

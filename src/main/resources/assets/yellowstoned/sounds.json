@@ -1,0 +1,18 @@
+{
+  "entity_moose_death":{
+    "subtitle":"sounds.yellowstoned.entity.moose.death",
+    "sounds": [
+      "yellowstoned:moose/entity_moose_death"
+    ]
+  },
+  "entity_moose_ambient":{
+    "subtitle":"sounds.yellowstoned.entity.moose.ambient",
+    "sounds": [
+      "yellowstoned:moose/moose_say1",
+      "yellowstoned:moose/moose_say2",
+      "yellowstoned:moose/moose_say3",
+      "yellowstoned:moose/moose_say4"
+    ]
+  }
+
+}
