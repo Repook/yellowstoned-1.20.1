@@ -1,0 +1,38 @@
+{
+  "criteria": {
+    "has_yellowstoned_guide_book": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yellowstoned:yellowstoned_guide_book"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "minecraft:textures/block/light_gray_terracotta.png",
+    "description": {
+      "text": "Discover the beauties of nature"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "yellowstoned:yellowstoned_guide_book"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Yellowstoned"
+    }
+  },
+  "requirements": [
+    [
+      "has_yellowstoned_guide_book"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

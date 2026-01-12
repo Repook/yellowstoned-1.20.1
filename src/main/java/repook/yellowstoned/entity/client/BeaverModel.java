@@ -2,7 +2,9 @@ package repook.yellowstoned.entity.client;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.*;
+import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.AnimalModel;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.MathHelper;
 import repook.yellowstoned.entity.custom.BeaverEntity;
 
@@ -65,6 +67,34 @@ public class BeaverModel<T extends BeaverEntity> extends AnimalModel<T> {
 
     }
 
+    @Override
+    public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay,
+                       float red, float green, float blue, float alpha) {
+        if (this.child) {
+            // Render big head
+            matrices.push();
+            matrices.scale(0.85F, 0.85F, 0.85F);   // head size
+            matrices.translate(0.0F, 0.35F, 0.35F); // move head down
+            this.head.render(matrices, vertices, light, overlay, red, green, blue, alpha);
+            matrices.pop();
+
+            // Render small body
+            matrices.push();
+            matrices.scale(0.5F, 0.5F, 0.5F); // body size
+            matrices.translate(0.0F, 1.5F, 0.0F); // adjust height
+
+            this.body.render(matrices, vertices, light, overlay, red, green, blue, alpha);
+            this.back_left_leg.render(matrices, vertices, light, overlay, red, green, blue, alpha);
+            this.back_right_leg.render(matrices, vertices, light, overlay, red, green, blue, alpha);
+            this.front_left_leg.render(matrices, vertices, light, overlay, red, green, blue, alpha);
+            this.front_right_leg.render(matrices, vertices, light, overlay, red, green, blue, alpha);
+
+            matrices.pop();
+        } else {
+            // Normal adult render
+            super.render(matrices, vertices, light, overlay, red, green, blue, alpha);
+        }
+    }
 
     @Override
     protected Iterable<ModelPart> getHeadParts() {

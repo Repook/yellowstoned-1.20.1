@@ -5,6 +5,12 @@
       "yellowstoned:moose/entity_moose_death"
     ]
   },
+  "entity_moose_hurt":{
+    "subtitle":"sounds.yellowstoned.entity.moose.hurt",
+    "sounds": [
+      "yellowstoned:moose/entity_moose_hurt"
+    ]
+  },
   "entity_moose_ambient":{
     "subtitle":"sounds.yellowstoned.entity.moose.ambient",
     "sounds": [
@@ -13,6 +19,68 @@
       "yellowstoned:moose/moose_say3",
       "yellowstoned:moose/moose_say4"
     ]
-  }
+  },
+  "entity_bison_hurt":{
+    "subtitle":"sounds.yellowstoned.entity.bison.hurt",
+    "sounds": [
+      "yellowstoned:bison/entity_bison_hurt"
+    ]
+  },
+  "entity_bison_ambient":{
+    "subtitle":"sounds.yellowstoned.entity.bison.ambient",
+    "sounds": [
+      "yellowstoned:bison/bison_say1",
+      "yellowstoned:bison/bison_say2"
+    ]
+  },
+  "entity_bison_death":{
+    "subtitle":"sounds.yellowstoned.entity.bison.death",
+    "sounds": [
+      "yellowstoned:bison/entity_bison_death"
+    ]
+  },
 
+  "entity_beaver_ambient":{
+    "subtitle":"sounds.yellowstoned.entity.beaver.ambient",
+    "sounds": [
+      "yellowstoned:beaver/beaver_say1",
+      "yellowstoned:beaver/beaver_say2",
+      "yellowstoned:beaver/beaver_say3",
+      "yellowstoned:beaver/beaver_say4"
+
+    ]
+  },
+  "entity_beaver_hurt":{
+    "subtitle":"sounds.yellowstoned.entity.beaver.hurt",
+    "sounds": [
+      "yellowstoned:beaver/entity_beaver_hurt"
+    ]
+  },
+  "entity_beaver_death":{
+    "subtitle":"sounds.yellowstoned.entity.beaver.death",
+    "sounds": [
+      "yellowstoned:beaver/entity_beaver_death"
+    ]
+  },
+
+  "entity_reindeer_ambient":{
+    "subtitle":"sounds.yellowstoned.entity.reindeer.ambient",
+    "sounds": [
+      "yellowstoned:reindeer/reindeer_say1",
+      "yellowstoned:reindeer/reindeer_say2"
+
+    ]
+  },
+  "entity_reindeer_hurt":{
+    "subtitle":"sounds.yellowstoned.entity.reindeer.hurt",
+    "sounds": [
+      "yellowstoned:reindeer/entity_reindeer_hurt"
+    ]
+  },
+  "entity_reindeer_death":{
+    "subtitle":"sounds.yellowstoned.entity.reindeer.death",
+    "sounds": [
+      "yellowstoned:reindeer/entity_reindeer_death"
+    ]
+  }
 }

@@ -1,0 +1,50 @@
+{
+  "parent": "yellowstoned:yellowstoned",
+  "criteria": {
+    "spyglass_at_reindeer": {
+      "conditions": {
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        },
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type_specific": {
+                "type": "player",
+                "looking_at": {
+                  "type": "yellowstoned:reindeer"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:using_item"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "look at a Reindeer through a spyglass"
+    },
+    "frame": "task",
+    "hidden": true,
+    "icon": {
+      "item": "minecraft:spyglass"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "You know DDPVCCDB..."
+    }
+  },
+  "requirements": [
+    [
+      "spyglass_at_reindeer"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -11,9 +11,10 @@ import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ArmorItem;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import repook.yellowstoned.item.custom.CustomArmorItem;
 
 import java.util.Map;
 
@@ -47,32 +48,12 @@ public abstract class Piece {
             }
         }
     }
-
-//    private static final String MOD_ID = "yellowstoned";
-//
-//    private Identifier getTexture(ArmorItem item, boolean overlay) {
-//        String path =
-//                "textures/models/armor/"
-//                        + item.getMaterial().getName()
-//                        + "/"
-//                        + this.texture
-//                        + (overlay ? "_overlay" : "")
-//                        + ".png";
-//
-//        System.out.println(MOD_ID + ":" + path);
-//
-//        return ARMOR_TEXTURE_CACHE.computeIfAbsent(
-//                path,
-//                p -> new Identifier(MOD_ID, p)
-//        );
-//    }
-    private Identifier getTexture(ArmorItem item, boolean overlay) {
+    private Identifier getTexture(CustomArmorItem item, boolean overlay) {
         String string = "yellowstoned:textures/models/armor/" + item.getMaterial().getName() + "/" + getTexture() + (overlay ? "_overlay" : "") + ".png";
-        System.out.println(string);
         return ARMOR_TEXTURE_CACHE.computeIfAbsent(string, Identifier::new);
     }
 
-    protected void renderParts(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ItemStack itemStack, ArmorItem item, EntityModel model, float red, float green, float blue, boolean overlay) {
+    protected void renderParts(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ItemStack itemStack, CustomArmorItem item, EntityModel model, float red, float green, float blue, boolean overlay) {
         RenderLayer renderLayer;
         if (isTranslucent()) {
             renderLayer = RenderLayer.getEntityTranslucent(getTexture(item, overlay));
@@ -128,9 +109,6 @@ public abstract class Piece {
         return glint;
     }
 
-    public boolean isColored() {
-        return colored;
-    }
 
     public boolean isGlowing() {
         return glowing;

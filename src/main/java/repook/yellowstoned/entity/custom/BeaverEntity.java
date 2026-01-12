@@ -9,6 +9,7 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -17,9 +18,12 @@ import net.minecraft.entity.passive.TurtleEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
@@ -29,7 +33,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import repook.yellowstoned.effect.ModEffects;
+import repook.yellowstoned.entity.ModEntities;
 import repook.yellowstoned.item.ModItems;
+import repook.yellowstoned.sound.ModSounds;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -46,6 +52,7 @@ public class BeaverEntity extends AnimalEntity {
         this.setCanPickUpLoot(true);
     }
 
+
     //chopping logic
     public void setChopping(boolean chopping) {
         this.chopping = chopping;
@@ -58,7 +65,11 @@ public class BeaverEntity extends AnimalEntity {
     @Nullable
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-        return null;
+            return ModEntities.BEAVER.create(world);
+    }
+    @Override
+    public boolean isBreedingItem(ItemStack stack) {
+        return stack.isIn(ItemTags.LOGS);
     }
 
     //goals, lower number = higher priority
@@ -66,6 +77,8 @@ public class BeaverEntity extends AnimalEntity {
     protected void initGoals() {
         this.goalSelector.add(1, new TreeChopGoal(this));
         this.goalSelector.add(1, new SwimGoal(this));
+        this.goalSelector.add(2, new AnimalMateGoal(this, 1.0));
+        this.goalSelector.add(3, new TemptGoal(this, 1.1, Ingredient.fromTag(ItemTags.LOGS), false));
         this.goalSelector.add(2, new EscapeDangerGoal(this, 2.0));
         this.goalSelector.add(4, new BeaverEntity.PickupItemGoal());
         this.goalSelector.add(8, new WanderAroundFarGoal(this, 1f));
@@ -80,6 +93,24 @@ public class BeaverEntity extends AnimalEntity {
         return MobEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.20000000298023224f);
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return ModSounds.ENTITY_BEAVER_AMBIENT;
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return ModSounds.ENTITY_BEAVER_HURT;
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ModSounds.ENTITY_BEAVER_DEATH;
     }
 
     //head calc stuff WORKING NOW!

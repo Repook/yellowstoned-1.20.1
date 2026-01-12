@@ -1,6 +1,11 @@
 package repook.yellowstoned.client.entity;
 
 import net.minecraft.client.model.*;
+import net.minecraft.client.render.entity.model.EntityModelLayer;
+import net.minecraft.client.render.entity.model.PiglinHeadEntityModel;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.mob.ZombieEntity;
+import net.minecraft.util.Identifier;
 
 public class HorizontalHeadModel extends DecoHeadModel {
     private final ModelPart part;
@@ -10,10 +15,21 @@ public class HorizontalHeadModel extends DecoHeadModel {
 
         ModelData modelData = new ModelData();
 
-        modelData.getRoot().addChild("part", ModelPartBuilder.create().uv(5, 34).cuboid(-7.0F, -6.0F, -4.0F, 20.0F, 6.0F, 5.0F, new Dilation(0.0F)), ModelTransform.of(-3.0F, -30.6F, 1.1F, -0.0436F, 0.0F, 0.0F));
+//        modelData.getRoot().addChild("part",
+//                ModelPartBuilder.create()
+//                        .cuboid(-10.0F, -17.0F, 0.0F, 20.0F, 12.0F, 0.0F),
+//                ModelTransform.NONE);
+
+        modelData.getRoot().addChild("part", ModelPartBuilder.create().cuboid
+                (-10.0F, -12.0F, -2.0F,
+                20.0F, 6.0F, 5.0F).uv(0, 11).cuboid(-4.0F, -9.0F, -0.5F, 8.0F, 3.0F, 1.0F),ModelTransform.NONE);
+
+
         ModelPart model = TexturedModelData.of(modelData, 64, 64).createModel();
         part = model.getChild("part");
     }
+
+
 
     @Override
     ModelPart getPart() {

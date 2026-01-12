@@ -1,19 +1,43 @@
 {
   "itemgroup.yellowstoned_group": "Yellowstoned",
+
   "item.yellowstoned.beaver_spawn_egg": "Beaver Spawn Egg",
   "item.yellowstoned.reindeer_spawn_egg": "Reindeer Spawn Egg",
   "item.yellowstoned.moose_spawn_egg": "Moose Spawn Egg",
   "item.yellowstoned.bison_spawn_egg": "Bison Spawn Egg",
 
+  "block.yellowstoned.reindeer_antler_display": "Reindeer Antler Display",
+
   "item.yellowstoned.yellowstoned_guide_book": "Yellowstoned Guide Book",
   "item.yellowstoned.wood_soup": "Wood Soup",
+  "item.yellowstoned.moose_headdress": "Moose Headdress",
+  "item.yellowstoned.moose_antler": "Moose Antler",
+  "item.yellowstoned.reindeer_antler": "Reindeer Antler",
+  "item.yellowstoned.raw_bison": "Raw Bison",
+  "item.yellowstoned.cooked_bison": "Cooked Bison",
+
 
   "entity.yellowstoned.moose": "Moose",
+  "entity.yellowstoned.bison": "Bison",
   "entity.yellowstoned.reindeer": "Reindeer",
   "entity.yellowstoned.beaver": "Beaver",
 
   "sounds.yellowstoned.entity.moose.death": "Moose dies",
+  "sounds.yellowstoned.entity.moose.hurt": "Moose hurt",
   "sounds.yellowstoned.entity.moose.ambient": "Moose bellows",
+
+  "sounds.yellowstoned.entity.bison.hurt": "Bison hurt",
+  "sounds.yellowstoned.entity.bison.ambient": "Bison grunts",
+  "sounds.yellowstoned.entity.bison.death": "Bison dies",
+
+  "sounds.yellowstoned.entity.beaver.hurt": "Beaver hurt",
+  "sounds.yellowstoned.entity.beaver.ambient": "Beaver whines",
+  "sounds.yellowstoned.entity.beaver.death": "Beaver dies",
+
+  "sounds.yellowstoned.entity.reindeer.ambient": "Reindeer grunts",
+  "sounds.yellowstoned.entity.reindeer.hurt": "Reindeer hurt",
+  "sounds.yellowstoned.entity.reindeer.death": "Reindeer dies",
+
 
   "effect.yellowstoned.chopped": "Chopped"
 }

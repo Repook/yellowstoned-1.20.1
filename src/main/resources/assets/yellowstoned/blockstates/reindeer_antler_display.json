@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "yellowstoned:block/reindeer_antler_display",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "yellowstoned:block/reindeer_antler_display"
+    },
+    "facing=south": {
+      "model": "yellowstoned:block/reindeer_antler_display",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "yellowstoned:block/reindeer_antler_display",
+      "y": 270
+    }
+  }
+}

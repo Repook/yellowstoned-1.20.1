@@ -27,10 +27,10 @@ public class ModEntities {
     public static final EntityType<MooseEntity> MOOSE = Registry.register(
             Registries.ENTITY_TYPE, new Identifier(Yellowstoned.MOD_ID, "moose"),
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE,MooseEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.7F, 1.8F)).build());
+                    .dimensions(EntityDimensions.fixed(1.0F, 2.0F)).build());
 
     public static final EntityType<BisonEntity> BISON = Registry.register(
             Registries.ENTITY_TYPE, new Identifier(Yellowstoned.MOD_ID, "bison"),
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE,BisonEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.7F, 1.8F)).build());
+                    .dimensions(EntityDimensions.fixed(1.5F, 1.8F)).build());
 }

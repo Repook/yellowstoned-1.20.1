@@ -55,19 +55,40 @@ public class BisonModel <T extends BisonEntity> extends AnimalModel<T> {
 
         ModelPartData front_left_leg = modelPartData.addChild("front_left_leg", ModelPartBuilder.create().uv(68, 14).cuboid(-2.0F, 0.0F, -2.0F, 4.0F, 10.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(-5.0F, 14.0F, -10.0F));
 
-        ModelPartData head = modelPartData.addChild("head", ModelPartBuilder.create().uv(64, 42).cuboid(-5.0F, -8.1736F, -11.0152F, 10.0F, 16.0F, 11.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 3.5F, -14.0F, -0.1745F, 0.0F, 0.0F));
+        ModelPartData head = modelPartData.addChild("head", ModelPartBuilder.create().uv(64, 42).cuboid(-5.0F, -8.1736F, -11.0152F, 10.0F, 16.0F, 11.0F, new Dilation(0.0F))
+                .uv(0, 89).cuboid(-6.0F, -9.1736F, -12.0152F, 12.0F, 8.0F, 12.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 3.5F, -14.0F, -0.1745F, 0.0F, 0.0F));
 
-        ModelPartData bone2 = head.addChild("bone2", ModelPartBuilder.create(), ModelTransform.pivot(-6.5F, -7.1736F, -5.5152F));
+        ModelPartData bone2 = head.addChild("bone2", ModelPartBuilder.create().uv(16, 80).cuboid(-1.5F, -3.0F, -2.0F, 3.0F, 6.0F, 3.0F, new Dilation(0.0F)), ModelTransform.pivot(-6.5F, -3.2344F, -4.8206F));
 
-        ModelPartData cube_r2 = bone2.addChild("cube_r2", ModelPartBuilder.create().uv(16, 80).cuboid(-1.5F, -3.0F, -2.0F, 3.0F, 6.0F, 3.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.1745F, 0.0F, 0.0F));
-
-        ModelPartData bone = head.addChild("bone", ModelPartBuilder.create(), ModelTransform.pivot(6.5F, -7.1736F, -5.5152F));
-
-        ModelPartData cube_r3 = bone.addChild("cube_r3", ModelPartBuilder.create().uv(28, 80).cuboid(-1.5F, -3.0F, -2.0F, 3.0F, 6.0F, 3.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.1745F, 0.0F, 0.0F));
+        ModelPartData bone = head.addChild("bone", ModelPartBuilder.create().uv(28, 80).cuboid(-1.5F, -3.0F, -2.0F, 3.0F, 6.0F, 3.0F, new Dilation(0.0F)), ModelTransform.pivot(6.5F, -3.2344F, -4.8206F));
         return TexturedModelData.of(modelData, 128, 128);
     }
     @Override
     public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
+        if (this.child) {
+            matrices.push();
+
+            // Custom head render
+            matrices.scale(0.65F, 0.65F, 0.65F);
+            matrices.translate(0.0F, 1.2F, 0.1F);
+            this.getHeadParts().forEach(p ->
+                    p.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha)
+            );
+
+            matrices.pop();
+            matrices.push();
+
+            // Custom body render
+            matrices.scale(0.55F, 0.55F, 0.55F);
+            matrices.translate(0.0F, 1.2F, 0.0F);
+            this.getBodyParts().forEach(p ->
+                    p.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha)
+            );
+
+            matrices.pop();
+            return;
+        }
+
         body.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
         tail.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
         front_right_leg.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);

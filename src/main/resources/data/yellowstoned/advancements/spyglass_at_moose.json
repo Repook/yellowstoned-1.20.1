@@ -29,16 +29,16 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "text": "Moose in the rearview"
+      "text": "look at a Moose through a spyglass"
     },
     "frame": "task",
-    "hidden": false,
+    "hidden": true,
     "icon": {
       "item": "minecraft:spyglass"
     },
     "show_toast": true,
     "title": {
-      "text": "Is it a Moose"
+      "text": "Date With A Moose"
     }
   },
   "requirements": [

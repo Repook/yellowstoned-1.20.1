@@ -3,6 +3,7 @@ package repook.yellowstoned.entity.client;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.entity.VillagerEntityRenderer;
 import net.minecraft.client.render.entity.model.AnimalModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
@@ -100,10 +101,46 @@ public class MooseModel <T extends MooseEntity> extends AnimalModel<T> {
     }
 
     @Override
+    public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
+
+        if (this.child) {
+            matrices.push();
+
+            // Custom head render
+            matrices.scale(0.65F, 0.65F, 0.65F);
+            matrices.translate(0.0F, 1.2F, 0.1F);
+            this.getHeadParts().forEach(p ->
+                    p.render(matrices, vertices, light, overlay, red, green, blue, alpha)
+            );
+
+            matrices.pop();
+            matrices.push();
+
+            // Custom body render
+            matrices.scale(0.55F, 0.55F, 0.55F);
+            matrices.translate(0.0F, 1.2F, 0.0F);
+            this.getBodyParts().forEach(p ->
+                    p.render(matrices, vertices, light, overlay, red, green, blue, alpha)
+            );
+
+            matrices.pop();
+            return;
+        }
+        super.render(matrices, vertices, light, overlay, red, green, blue, alpha);
+    }
+
+    @Override
     public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
-        //does head anims
+        boolean hasAntlers = entity.hasAntlers();
+        this.leftantler.visible = hasAntlers;
+        this.rightantler.visible = hasAntlers;
+
+
         this.head.pitch = headPitch * 0.017453292F;
         this.head.yaw = headYaw * 0.017453292F;
+
+
+
 
         //does leg anims
         this.front_left_leg.pitch = MathHelper.cos(limbAngle * 0.6662F) * 1.4F * limbDistance;

@@ -1,0 +1,50 @@
+{
+  "parent": "yellowstoned:yellowstoned",
+  "criteria": {
+    "spyglass_at_beaver": {
+      "conditions": {
+        "item": {
+          "items": [
+            "minecraft:spyglass"
+          ]
+        },
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type_specific": {
+                "type": "player",
+                "looking_at": {
+                  "type": "yellowstoned:beaver"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:using_item"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": "look at a Beaver through a spyglass"
+    },
+    "frame": "task",
+    "hidden": true,
+    "icon": {
+      "item": "minecraft:spyglass"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "The 2nd Largest Rodent"
+    }
+  },
+  "requirements": [
+    [
+      "spyglass_at_beaver"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

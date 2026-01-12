@@ -2,15 +2,12 @@ package repook.yellowstoned.item;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ArmorMaterials;
-import net.minecraft.item.Item;
-import net.minecraft.item.SpawnEggItem;
+import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import repook.yellowstoned.Yellowstoned;
-import repook.yellowstoned.client.entity.HorizontalHeadModel;
+
 import repook.yellowstoned.client.entity.piece.ModelPiece;
 import repook.yellowstoned.entity.ModEntities;
 import repook.yellowstoned.item.custom.ModArmorMaterials;
@@ -32,13 +29,20 @@ public class ModItems {
     public static final Item BISON_SPAWN_EGG = registerItem("bison_spawn_egg",
             new SpawnEggItem(ModEntities.BISON,0x4b362e,0x926130, new FabricItemSettings()));
     public static final Item WOOD_SOUP = registerItem("wood_soup",
-            new Item(new FabricItemSettings().food(ModFoodComponents.WOOD_SOUP).maxCount(1)));
+            new StewItem(new FabricItemSettings().food(ModFoodComponents.WOOD_SOUP).maxCount(1)));
+    public static final Item RAW_BISON = registerItem("raw_bison",
+            new Item(new FabricItemSettings().food(ModFoodComponents.RAW_BISON)));
+
+    public static final Item COOKED_BISON = registerItem("cooked_bison",
+            new Item(new FabricItemSettings().food(ModFoodComponents.COOKED_BISON)));
+    public static final Item MOOSE_ANTLER = registerItem("moose_antler",
+            new Item(new FabricItemSettings()));
+
+    public static final Item REINDEER_ANTLER = registerItem("reindeer_antler",
+            new Item(new FabricItemSettings()));
+
     public static final Item YELLOWSTONED_GUIDE_BOOK = registerItem("yellowstoned_guide_book",
             new YellowstonedGuideBookItem(new FabricItemSettings().maxCount(1)));
-
-
-    public static final Item HAT = registerItem("hat",
-            new ArmorItem(ArmorMaterials.IRON, net.minecraft.item.ArmorItem.Type.HELMET, new Item.Settings()));
 
 
 

@@ -2,14 +2,12 @@ package repook.yellowstoned.item.custom;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.client.render.entity.RabbitEntityRenderer;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Equipment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
@@ -29,15 +27,15 @@ public class YellowstonedGuideBookItem extends Item implements Equipment {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        if (!world.isClient) return TypedActionResult.success(user.getStackInHand(hand));
-        MinecraftClient.getInstance().setScreen(new GuideBookScreen(user, user.getStackInHand(hand)));
-        PlayerVariableInterface variableInterface = (PlayerVariableInterface) user;
-        int value = variableInterface.yellowstoned$getMyValue();
-        System.out.println(value);
-        System.out.println(isOwner(user.getStackInHand(hand),user));
-//        if (user.getStackInHand(hand).hasNbt()) {
-//            System.out.println(user.getStackInHand(hand).getNbt().getString("yellowstoned.owner_name"));
+//        int value = 0;
+//        if (!world.isClient) {
+//            PlayerVariableInterface variableInterface = (PlayerVariableInterface) user;
+//            value = variableInterface.yellowstoned$getBeaverUnlock();
 //        }
+        if (!world.isClient) return TypedActionResult.success(user.getStackInHand(hand));
+//        System.out.println("value in item: " + value);
+        MinecraftClient.getInstance().setScreen(new GuideBookScreen(user, user.getStackInHand(hand)));
+
         return TypedActionResult.success(user.getStackInHand(hand));
     }
 
@@ -72,23 +70,6 @@ public class YellowstonedGuideBookItem extends Item implements Equipment {
         }
     }
 
-
-    public static void unlockInBook(ItemStack book, String id) {
-        NbtCompound main = book.getOrCreateNbt();
-
-        // Make sure the book has our namespace
-        NbtCompound ys = main.getCompound("yellowstoned");
-        if (ys == null) ys = new NbtCompound();
-
-        // Get or create the unlocked list
-        NbtCompound unlocked = ys.getCompound("unlocked");
-        if (unlocked == null) unlocked = new NbtCompound();
-
-        unlocked.putBoolean(id, true);
-        ys.put("unlocked", unlocked);
-
-        main.put("yellowstoned", ys);
-    }
 
     @Override
     public EquipmentSlot getSlotType() {

@@ -1,11 +1,12 @@
 {
+  "parent": "yellowstoned:spyglass_at_moose",
   "criteria": {
-    "has_yellowstoned_guide_book": {
+    "worn_moose_headdress": {
       "conditions": {
         "items": [
           {
             "items": [
-              "yellowstoned:yellowstoned_guide_book"
+              "yellowstoned:moose_headdress"
             ]
           }
         ]
@@ -15,23 +16,24 @@
   },
   "display": {
     "announce_to_chat": true,
-    "background": "yellowstoned:textures/item/yellowstoned_guide_book.png",
+    "background": "yellowstoned:block/dirt",
     "description": {
-      "text": "Discover the beauties of nature"
+      "text": "My back is aching..."
     },
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "yellowstoned:yellowstoned_guide_book"
+      "item": "yellowstoned:moose_headdress",
+      "nbt": "{Damage:0}"
     },
     "show_toast": true,
     "title": {
-      "text": "Yellowstoned"
+      "text": "Do Your Thing!"
     }
   },
   "requirements": [
     [
-      "has_yellowstoned_guide_book"
+      "worn_moose_headdress"
     ]
   ],
   "sends_telemetry_event": true

@@ -2,6 +2,8 @@ package repook.yellowstoned.entity.client;
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.util.Identifier;
 import repook.yellowstoned.Yellowstoned;
 import repook.yellowstoned.entity.custom.MooseEntity;

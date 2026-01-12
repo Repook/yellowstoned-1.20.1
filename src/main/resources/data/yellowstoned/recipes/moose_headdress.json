@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "yellowstoned:moose_antler"
+    },
+    "S": {
+      "item": "minecraft:string"
+    }
+  },
+  "pattern": [
+    "B B",
+    " S "
+  ],
+  "result": {
+    "item": "yellowstoned:moose_headdress"
+  }
+}

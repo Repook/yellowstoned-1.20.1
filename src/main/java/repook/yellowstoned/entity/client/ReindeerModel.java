@@ -2,7 +2,11 @@ package repook.yellowstoned.entity.client;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.*;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.entity.VillagerEntityRenderer;
 import net.minecraft.client.render.entity.model.AnimalModel;
+import net.minecraft.client.render.entity.model.VillagerResemblingModel;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.MathHelper;
 import repook.yellowstoned.entity.custom.ReindeerEntity;
 
@@ -78,6 +82,35 @@ public class ReindeerModel <T extends ReindeerEntity> extends AnimalModel<T> {
         return TexturedModelData.of(modelData, 128, 128);
     }
 
+
+    @Override
+    public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
+        if (this.child) {
+            // Render big head
+            matrices.push();
+            matrices.scale(0.65F, 0.65F, 0.65F);   // head size
+            matrices.translate(0.0F, 1.2F, 0.15F); // move head down
+            this.neck.render(matrices, vertices, light, overlay, red, green, blue, alpha);
+            matrices.pop();
+
+            // Render small body
+            matrices.push();
+            matrices.scale(0.5F, 0.5F, 0.5F); // body size
+            matrices.translate(0.0F, 1.5F, 0.0F); // adjust height
+
+            this.body.render(matrices, vertices, light, overlay, red, green, blue, alpha);
+            this.back_left_leg.render(matrices, vertices, light, overlay, red, green, blue, alpha);
+            this.back_right_leg.render(matrices, vertices, light, overlay, red, green, blue, alpha);
+            this.front_left_leg.render(matrices, vertices, light, overlay, red, green, blue, alpha);
+            this.front_right_leg.render(matrices, vertices, light, overlay, red, green, blue, alpha);
+
+            matrices.pop();
+        } else {
+            // Normal adult render
+            super.render(matrices, vertices, light, overlay, red, green, blue, alpha);
+        }
+    }
+
     @Override
     protected Iterable<ModelPart> getHeadParts() {
         return ImmutableList.of(this.neck);
@@ -99,6 +132,7 @@ public class ReindeerModel <T extends ReindeerEntity> extends AnimalModel<T> {
         this.front_right_leg.pitch = MathHelper.cos(limbAngle * 0.6662F + (float)Math.PI) * 1.4F * limbDistance;
         this.back_left_leg.pitch = MathHelper.cos(limbAngle * 0.6662F + (float)Math.PI) * 1.4F * limbDistance;
         this.back_right_leg.pitch = MathHelper.cos(limbAngle * 0.6662F) * 1.4F * limbDistance;
+
 
     }
 }

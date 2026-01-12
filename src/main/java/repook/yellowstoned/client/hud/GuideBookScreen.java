@@ -18,29 +18,40 @@ import java.util.List;
 public class GuideBookScreen extends Screen {
     PlayerEntity player;
     ItemStack item;
+    int beaverValue;
     private int page = 0;
-    private final int MAX_PAGES = 4; // however many pages you have
+    private final int MAX_PAGES = 5; // however many pages you have
     private static final Identifier GUIDE_BOOK_PAGE_0 = new Identifier(Yellowstoned.MOD_ID,"textures/gui/guide_book_page0.png");
     private static final Identifier GUIDE_BOOK_PAGE_1 = new Identifier(Yellowstoned.MOD_ID,"textures/gui/guide_book_page1.png");
     private static final Identifier GUIDE_BOOK_PAGE_2 = new Identifier(Yellowstoned.MOD_ID,"textures/gui/guide_book_page2.png");
     private static final Identifier GUIDE_BOOK_PAGE_3 = new Identifier(Yellowstoned.MOD_ID,"textures/gui/guide_book_page3.png");
     private static final Identifier GUIDE_BOOK_PAGE_4 = new Identifier(Yellowstoned.MOD_ID,"textures/gui/guide_book_page4.png");
+    private static final Identifier GUIDE_BOOK_PAGE_5 = new Identifier(Yellowstoned.MOD_ID,"textures/gui/guide_book_page5.png");
+    private static final Identifier GUIDE_BOOK_PAGE_6 = new Identifier(Yellowstoned.MOD_ID,"textures/gui/guide_book_page6.png");
+    private static final Identifier GUIDE_BOOK_PAGE_7 = new Identifier(Yellowstoned.MOD_ID,"textures/gui/guide_book_page7.png");
 
     private static final Identifier BUTTON_TEX_BEAVER = new Identifier(Yellowstoned.MOD_ID,"textures/gui/beaver_button.png");
     private static final Identifier BUTTON_TEX_MOOSE = new Identifier(Yellowstoned.MOD_ID,"textures/gui/moose_button.png");
     private static final Identifier BUTTON_TEX_REINDEER = new Identifier(Yellowstoned.MOD_ID,"textures/gui/reindeer_button.png");
+    private static final Identifier BUTTON_TEX_BISON = new Identifier(Yellowstoned.MOD_ID,"textures/gui/bison_button.png");
 
+    private static final Identifier PREV_PAGE_TEX =
+            new Identifier(Yellowstoned.MOD_ID, "textures/gui/page_backward.png");
+    private static final Identifier NEXT_PAGE_TEX =
+            new Identifier(Yellowstoned.MOD_ID, "textures/gui/page_forward.png");
     private final String[] PAGE_TEXT = new String[] {
             "", // page 0 (cover, no text)
-            "The Beaver is a small, passive mammal which spawns on solid land near rivers. These large rodents are equipped with large front teeth which can pierce through solid logs. If these creatures are fed some Wood Soup, they will chop down the nearest logs around it for 30 seconds. The creature's fondness for logs can also be used to breed 2 of them.",
-            "The Moose is a large, neutral mammal which can be found in the old growth spruce and taiga biomes. They attack when provoked, causing large knockback and moderate damage. The moose has a small chance to drop one of it’s antlers, which can be used as part of a display or for a new helmet.",
-            "Reindeer travel in large packs across the snowy plains, looking for any bits of food they can find.",
+            "The Beaver is a small, passive mammal which spawns on solid land near rivers. These large rodents are equipped with large front teeth which can pierce through solid logs. If these creatures are fed some Wood Soup—crafted with 6 different log types— they will chop down the nearest logs around it for 30 seconds. The creature's fondness for logs can also be used to breed 2 of them.",
+            "The Moose is a large, neutral mammal which can be found in the old growth spruce and taiga biomes. They attack when provoked, causing knockback and moderate damage. The moose has a small chance to drop one of it’s antlers when slain, but can also be fed Sea Grass for a chance to drop them both. The antler's can be used as part of a display or for a new helmet.",
+            "Reindeer are medium sized mammals that travel in large herds across the snowy plains, looking for any bits of food they can find. When slain, they will occasionally drop one of their antlers, which can be crafted into a ornate display. The Reindeer can be bred together with their favorite food, Glow Lichen.",
+            "The Bison are large mammals that travel in herds in the Plains and Meadow biomes. Their meat is quite sought after for being extremely filling, but the Bison won't go down without a fight. When cooked, the meat fills more hunger bars than steak, but has less saturation. You can breed 2 of them with the Grass item.",
             // ... up to page 9
     };
     public GuideBookScreen(PlayerEntity player, ItemStack item) {
         super(Text.literal("Guide Book"));
         this.player = player;
         this.item = item;
+//        this.beaverValue = beaverValue;
     }
 
     @Override
@@ -55,8 +66,9 @@ public class GuideBookScreen extends Screen {
         switch (page) {
             case 0 -> drawPages(GUIDE_BOOK_PAGE_0,GUIDE_BOOK_PAGE_1,ctx);
             case 1 -> drawPages(GUIDE_BOOK_PAGE_2,GUIDE_BOOK_PAGE_4,ctx);
-            case 2 -> drawPages(GUIDE_BOOK_PAGE_3,GUIDE_BOOK_PAGE_4,ctx);
-            case 3 -> drawPages(GUIDE_BOOK_PAGE_3,GUIDE_BOOK_PAGE_4,ctx);
+            case 2 -> drawPages(GUIDE_BOOK_PAGE_5,GUIDE_BOOK_PAGE_4,ctx);
+            case 3 -> drawPages(GUIDE_BOOK_PAGE_6,GUIDE_BOOK_PAGE_4,ctx);
+            case 4 -> drawPages(GUIDE_BOOK_PAGE_7,GUIDE_BOOK_PAGE_4,ctx);
         }
 
         // Draw the text for this page
@@ -128,31 +140,50 @@ public class GuideBookScreen extends Screen {
     }
 
     private void rebuildPageButtons() {
-        this.clearChildren();  // removes old buttons/widgets
+        this.clearChildren();
 
-        int centerX = this.width / 2;
-        int centerY = this.height / 2;
+        int middleX = (this.width - 185) / 2;
+        int leftPageX = middleX - 72;
+        int rightPageX = middleX + 72;
 
-        // Page navigation buttons (always present)
-//        this.addDrawableChild(ButtonWidget.builder(Text.literal("<"), (b) -> changePage(-1))
-//                .dimensions(centerX - 60, centerY + 70, 20, 20).build());
-        this.addDrawableChild(ButtonWidget.builder(Text.literal("<"), (b) -> resetToPage0())
-                .dimensions(centerX - 60, centerY + 70, 20, 20).build());
-        this.addDrawableChild(ButtonWidget.builder(Text.literal(">"), (b) -> changePage(1))
-                .dimensions(centerX + 40, centerY + 70, 20, 20).build());
-
+        int pageBottomY = 160; // adjust if needed
+        if (page > 0) {
+            // PREVIOUS PAGE (bottom-left of left page)
+            this.addDrawableChild(new TexturedButtonWidget(
+                    leftPageX + 40, pageBottomY,
+                    20, 20,
+                    0, 0,
+                    20,
+                    PREV_PAGE_TEX,
+                    20, 40,
+                    (btn) -> changePage(-1)
+            ));
+        }
+        if (page < MAX_PAGES - 1) {
+            // NEXT PAGE (bottom-right of right page)
+            this.addDrawableChild(new TexturedButtonWidget(
+                    rightPageX + 125, pageBottomY,
+                    20, 20,
+                    0, 0,
+                    20,
+                    NEXT_PAGE_TEX,
+                    20, 40,
+                    (btn) -> changePage(1)
+            ));
+        }
         // Page-specific buttons
-        switch (page) {
-            case 0 -> addPage0Buttons(centerX, centerY);
-            //case 1 -> addPage1Buttons(centerX, centerY);
-            //case 2 -> addPage2Buttons(centerX, centerY);
+        if (page == 0) {
+            addPage0Buttons(this.width / 2, this.height / 2);
         }
     }
 
+
     private void addPage0Buttons(int centerX, int centerY) {
         PlayerVariableInterface variableInterface = (PlayerVariableInterface) player;
-        int value = variableInterface.yellowstoned$getMyValue();
-        if(value == 1 || !item.hasNbt()) {
+        int value = variableInterface.yellowstoned$getBeaverUnlock();
+        System.out.println("value from the page buttons :" + value);
+
+//        if (!item.hasNbt()) { }
 
             this.addDrawableChild(new TexturedButtonWidget(
                     centerX + 20, centerY - 100,                // position on screen
@@ -167,43 +198,64 @@ public class GuideBookScreen extends Screen {
                         rebuildPageButtons();
                     }
             ));
+
+
+            this.addDrawableChild(new TexturedButtonWidget(
+                    centerX + 40, centerY - 100,// position on screen
+                    20, 20,              // width, height of button
+                    0, 0,                // u, v (location inside the texture)
+                    20,                  // vOffset when hovered
+                    BUTTON_TEX_MOOSE,          // texture
+                    20, 20,              // full texture width & height
+                    (btn) -> {
+                        System.out.println("Clicked!");
+                        page = 2;
+                        rebuildPageButtons();
+                    }
+            ));
+
+
+            this.addDrawableChild(new TexturedButtonWidget(
+                    centerX + 60, centerY - 100,// position on screen
+                    20, 20,              // width, height of button
+                    0, 0,                // u, v (location inside the texture)
+                    20,                  // vOffset when hovered
+                    BUTTON_TEX_REINDEER,          // texture
+                    20, 20,              // full texture width & height
+                    (btn) -> {
+                        System.out.println("Clicked!");
+                        page = 3;
+                        rebuildPageButtons();
+                    }
+            ));
+
+
+            this.addDrawableChild(new TexturedButtonWidget(
+                    centerX + 80, centerY - 100,// position on screen
+                    20, 20,              // width, height of button
+                    0, 0,                // u, v (location inside the texture)
+                    20,                  // vOffset when hovered
+                    BUTTON_TEX_BISON,          // texture
+                    20, 20,              // full texture width & height
+                    (btn) -> {
+                        System.out.println("Clicked!");
+                        page = 4;
+                        rebuildPageButtons();
+                    }
+            ));
         }
-        this.addDrawableChild(new TexturedButtonWidget(
-                centerX + 40, centerY - 100,// position on screen
-                20, 20,              // width, height of button
-                0, 0,                // u, v (location inside the texture)
-                20,                  // vOffset when hovered
-                BUTTON_TEX_MOOSE,          // texture
-                20, 20,              // full texture width & height
-                (btn) -> {
-                    System.out.println("Clicked!");
-                    page = 2;
-                    rebuildPageButtons();
-                }
-        ));
-        this.addDrawableChild(new TexturedButtonWidget(
-                centerX + 60, centerY - 100,// position on screen
-                20, 20,              // width, height of button
-                0, 0,                // u, v (location inside the texture)
-                20,                  // vOffset when hovered
-                BUTTON_TEX_REINDEER,          // texture
-                20, 20,              // full texture width & height
-                (btn) -> {
-                    System.out.println("Clicked!");
-                    page = 3;
-                    rebuildPageButtons();
-                }
-        ));
-    }
+
     private boolean isUnlocked(ItemStack book, String id) {
         if (!book.hasNbt()) return false;
+        System.out.println("book has nbt");
 
         NbtCompound ys = book.getNbt().getCompound("yellowstoned");
         if (ys == null) return false;
 
+        System.out.println("book has yellowstoned");
         NbtCompound unlocked = ys.getCompound("unlocked");
         if (unlocked == null) return false;
-
+        System.out.println("book is unlocked");
         return unlocked.getBoolean(id);
     }
     String getOwner(ItemStack stack, PlayerEntity entity){

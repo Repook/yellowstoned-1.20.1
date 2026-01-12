@@ -1,0 +1,37 @@
+{
+  "parent": "yellowstoned:spyglass_at_bison",
+  "criteria": {
+    "eaten_raw_bison": {
+      "conditions": {
+        "item": {
+          "items": [
+            "yellowstoned:raw_bison"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "yellowstoned:block/dirt",
+    "description": {
+      "text": "glugluglugluglug"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "yellowstoned:raw_bison"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Pure Protein"
+    }
+  },
+  "requirements": [
+    [
+      "eaten_raw_bison"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

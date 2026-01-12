@@ -14,8 +14,16 @@ public abstract class DecoHeadModel extends DecoModel {
     abstract ModelPart getPart();
 
     public void copyFromModel(BipedEntityModel model, EquipmentSlot slot) {
+        ModelPart part = getPart();
         getPart().copyTransform(model.head);
+        // add your own rotation offsets
+        part.pitch += 0.15F; // tilt forward
+        part.yaw   += 0.0F;
+        part.roll  += 0.0F;
+
+
         super.copyFromModel(model, slot);
+
     }
 
     @Override

@@ -1,0 +1,39 @@
+{
+  "parent": "yellowstoned:spyglass_at_beaver",
+  "criteria": {
+    "has_wood_soup": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yellowstoned:wood_soup"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "yellowstoned:block/dirt",
+    "description": {
+      "text": "obtain Wood Soup"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "yellowstoned:wood_soup"
+    },
+    "show_toast": true,
+    "title": {
+      "text": "Who Put The Pikachu In The Stew?"
+    }
+  },
+  "requirements": [
+    [
+      "has_wood_soup"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

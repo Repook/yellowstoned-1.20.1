@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "yellowstoned:reindeer_antler"
+    },
+    "#": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "B#B"
+  ],
+  "result": {
+    "item": "yellowstoned:reindeer_antler_display"
+  }
+}
