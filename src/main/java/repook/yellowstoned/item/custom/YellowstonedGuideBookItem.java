@@ -19,7 +19,7 @@ import repook.yellowstoned.api.PlayerVariableInterface;
 
 import java.util.List;
 
-public class YellowstonedGuideBookItem extends Item implements Equipment {
+public class YellowstonedGuideBookItem extends Item{
     public YellowstonedGuideBookItem(Settings settings) {
         super(settings);
     }
@@ -71,8 +71,5 @@ public class YellowstonedGuideBookItem extends Item implements Equipment {
     }
 
 
-    @Override
-    public EquipmentSlot getSlotType() {
-        return EquipmentSlot.HEAD;
-    }
+
 }

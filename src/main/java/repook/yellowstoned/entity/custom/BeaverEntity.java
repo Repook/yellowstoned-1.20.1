@@ -296,7 +296,7 @@ public class BeaverEntity extends AnimalEntity {
         private boolean isBottomLog(BlockPos pos, World world) {
             BlockState state = world.getBlockState(pos);
             BlockState below = world.getBlockState(pos.down());
-            return state.isIn(BlockTags.LOGS) && (below.isOf(Blocks.DIRT) || below.isOf(Blocks.GRASS_BLOCK));
+            return state.isIn(BlockTags.LOGS) && (below.isIn(BlockTags.DIRT));
         }
 
         private void chopConnectedLogs(World world, BlockPos start) {

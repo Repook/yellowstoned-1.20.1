@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 205,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "yellowstoned:raw_bison"
+  },
+  "result": "yellowstoned:cooked_bison"
+}
