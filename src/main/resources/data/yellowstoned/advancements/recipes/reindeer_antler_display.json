@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_antler": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "yellowstoned:reindeer_antler"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "yellowstoned:reindeer_antler_display"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_antler",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "yellowstoned:reindeer_antler_display"
+    ]
+  },
+  "sends_telemetry_event": false
+}

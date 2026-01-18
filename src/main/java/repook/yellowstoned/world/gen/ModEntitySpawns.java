@@ -18,7 +18,7 @@ public class ModEntitySpawns {
                 Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn);
 
         BiomeModifications.addSpawn(BiomeSelectors.includeByKey(BiomeKeys.SNOWY_TAIGA,BiomeKeys.SNOWY_PLAINS),
-                SpawnGroup.CREATURE, ModEntities.REINDEER, 50, 2, 7);
+                SpawnGroup.CREATURE, ModEntities.REINDEER, 5, 2, 7);
 
         SpawnRestriction.register(ModEntities.REINDEER, SpawnRestriction.Location.ON_GROUND,
                 Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn);

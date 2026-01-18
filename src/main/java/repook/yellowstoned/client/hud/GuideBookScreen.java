@@ -173,77 +173,55 @@ public class GuideBookScreen extends Screen {
         }
         // Page-specific buttons
         if (page == 0) {
-            addPage0Buttons(this.width / 2, this.height / 2);
+            addPage0Buttons();
         }
     }
 
 
-    private void addPage0Buttons(int centerX, int centerY) {
-        PlayerVariableInterface variableInterface = (PlayerVariableInterface) player;
-        int value = variableInterface.yellowstoned$getBeaverUnlock();
-        System.out.println("value from the page buttons :" + value);
+    private void addPage0Buttons() {
+        int middleX = (this.width - 185) / 2;
+        int leftPageX = middleX - 72;
 
-//        if (!item.hasNbt()) { }
+        int buttonY = 20;  // Vertical position on the page
+        int buttonX = leftPageX + 180; // Inside left page
 
-            this.addDrawableChild(new TexturedButtonWidget(
-                    centerX + 20, centerY - 100,                // position on screen
-                    20, 20,              // width, height of button
-                    0, 0,                // u, v (location inside the texture)
-                    20,                  // vOffset when hovered
-                    BUTTON_TEX_BEAVER,          // texture
-                    20, 20,              // full texture width & height
-                    (btn) -> {
-                        System.out.println("Clicked!");
-                        page = 1;
-                        rebuildPageButtons();
-                    }
-            ));
+        this.addDrawableChild(new TexturedButtonWidget(
+                buttonX, buttonY,
+                20, 20,
+                0, 0, 20,
+                BUTTON_TEX_BEAVER,
+                20, 20,
+                (btn) -> { page = 1; rebuildPageButtons(); }
+        ));
 
+        this.addDrawableChild(new TexturedButtonWidget(
+                buttonX + 22, buttonY,
+                20, 20,
+                0, 0, 20,
+                BUTTON_TEX_MOOSE,
+                20, 20,
+                (btn) -> { page = 2; rebuildPageButtons(); }
+        ));
 
-            this.addDrawableChild(new TexturedButtonWidget(
-                    centerX + 40, centerY - 100,// position on screen
-                    20, 20,              // width, height of button
-                    0, 0,                // u, v (location inside the texture)
-                    20,                  // vOffset when hovered
-                    BUTTON_TEX_MOOSE,          // texture
-                    20, 20,              // full texture width & height
-                    (btn) -> {
-                        System.out.println("Clicked!");
-                        page = 2;
-                        rebuildPageButtons();
-                    }
-            ));
+        this.addDrawableChild(new TexturedButtonWidget(
+                buttonX + 44, buttonY,
+                20, 20,
+                0, 0, 20,
+                BUTTON_TEX_REINDEER,
+                20, 20,
+                (btn) -> { page = 3; rebuildPageButtons(); }
+        ));
 
+        this.addDrawableChild(new TexturedButtonWidget(
+                buttonX + 66, buttonY,
+                20, 20,
+                0, 0, 20,
+                BUTTON_TEX_BISON,
+                20, 20,
+                (btn) -> { page = 4; rebuildPageButtons(); }
+        ));
+    }
 
-            this.addDrawableChild(new TexturedButtonWidget(
-                    centerX + 60, centerY - 100,// position on screen
-                    20, 20,              // width, height of button
-                    0, 0,                // u, v (location inside the texture)
-                    20,                  // vOffset when hovered
-                    BUTTON_TEX_REINDEER,          // texture
-                    20, 20,              // full texture width & height
-                    (btn) -> {
-                        System.out.println("Clicked!");
-                        page = 3;
-                        rebuildPageButtons();
-                    }
-            ));
-
-
-            this.addDrawableChild(new TexturedButtonWidget(
-                    centerX + 80, centerY - 100,// position on screen
-                    20, 20,              // width, height of button
-                    0, 0,                // u, v (location inside the texture)
-                    20,                  // vOffset when hovered
-                    BUTTON_TEX_BISON,          // texture
-                    20, 20,              // full texture width & height
-                    (btn) -> {
-                        System.out.println("Clicked!");
-                        page = 4;
-                        rebuildPageButtons();
-                    }
-            ));
-        }
 
     private boolean isUnlocked(ItemStack book, String id) {
         if (!book.hasNbt()) return false;
